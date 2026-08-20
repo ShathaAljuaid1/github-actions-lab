@@ -25,5 +25,5 @@ jobs:
       - name: List all files in the repository
         run: ls -la
 
-      - name: Count lines in a file that does not exist
-        run: wc -l does-not-exist.txt
+      - name: Count lines in the README
+       run: wc -l README.md
