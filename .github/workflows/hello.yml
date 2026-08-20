@@ -9,20 +9,19 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Say hello
-        run: echo "Hello! My first GitHub Action is running."
+        run: echo "Hello from the greet job."
 
-      - name: Show the date and time
-        run: date
+  inspect:
+    runs-on: ubuntu-latest
+    needs: greet
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Show who triggered this
-        run: echo "Triggered by ${{ github.actor }}"
-
-      - name: List all files in the repository
-        run: ls -la
-
-      - name: Count lines in the README
-        run: wc -l README.md
+      - name: Report system info
+        run: |
+          echo "Running on: $(uname -a)"
+          df -h
+          pwd
